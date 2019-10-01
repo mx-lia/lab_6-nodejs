@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
-const {parse} = require('querystring');
+const sendmail = require('sendmail')({silent: true});
 
 http.createServer(function (request, response) {
     response.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
@@ -11,10 +11,19 @@ http.createServer(function (request, response) {
         });
     } else if (url.parse(request.url).pathname === '/' && request.method == 'POST') {
         let body = '';
-        request.on('data', (data) => body += data);
+        request.on('data', (chunk) => { body += chunk.toString(); });
         request.on('end', () => {
-            let parm = parse(body);
-            response.end('From: ' + parm.from + ' To: ' + parm.to + ' Text: ' + parm.text);
+            let parm = JSON.parse(body);
+            sendmail({
+                from: parm.from,
+                to: parm.to,
+                subject: 'test',
+                html: parm.text
+            }, (err, reply) => {
+                console.log(err & err.stack);
+                console.dir(reply);
+            });
+            response.end('Status: OK. From: ' + parm.from + ' .To: ' + parm.to + ' .Text: ' + parm.text);
         });
     }
 }).listen(3000);
