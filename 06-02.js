@@ -20,10 +20,10 @@ http.createServer(function (request, response) {
                 subject: 'test',
                 html: parm.text
             }, (err, reply) => {
-                console.log(err & err.stack);
+                console.log(err && err.stack);
                 console.dir(reply);
             });
-            response.end('Status: OK. From: ' + parm.from + ' .To: ' + parm.to + ' .Text: ' + parm.text);
+            response.end('Status: OK.\nFrom: ' + parm.from + ' .\nTo: ' + parm.to + ' .\nText: ' + parm.text);
         });
     }
 }).listen(3000);

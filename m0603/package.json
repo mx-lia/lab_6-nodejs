@@ -1,5 +1,5 @@
 {
-  "name": "lr_6",
+  "name": "m0603xx",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "m0603xx": "^1.0.0",
     "sendmail": "^1.6.1"
   }
 }
