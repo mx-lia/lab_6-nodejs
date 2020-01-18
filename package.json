@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "m0603xx": "^1.0.0",
+    "m0603xxxx": "^1.0.0",
     "sendmail": "^1.6.1"
   }
 }
